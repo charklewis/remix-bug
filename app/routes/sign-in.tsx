@@ -55,19 +55,32 @@ const loader: LoaderFunction = async ({ request }) => {
 
   if (!magicLinkToken) return null;
 
-  const { id, sessionToken, sessionId } = await verifyMagicLinkToken();
-  if (id && sessionToken && sessionId) {
-    const user = await getUser();
-    if (!user)
-      return json({ errors: { server: "There was an issue signing in." } });
-    session.set("user", user);
-    session.set("token", sessionToken);
-    session.set("sessionId", sessionId);
-    return redirect("/", {
-      headers: { "Set-Cookie": await commitSession(session) },
-    });
-  }
-  return json({ errors: { server: "There was an issue signing in." } });
+  /*
+    even without the async checking of the user, it still breaks
+  */
+
+  // const { id, sessionToken, sessionId } = await verifyMagicLinkToken();
+  // if (id && sessionToken && sessionId) {
+  //   const user = await getUser();
+  //   if (!user)
+  //     return json({ errors: { server: "There was an issue signing in." } });
+  //   session.set("user", user);
+  //   session.set("token", sessionToken);
+  //   session.set("sessionId", sessionId);
+  //   return redirect("/", {
+  //     headers: { "Set-Cookie": await commitSession(session) },
+  //   });
+  // }
+
+  //for testing set some values if there is a token in the URL
+  session.set("user", "user");
+  session.set("token", "sessionToken");
+  session.set("sessionId", "sessionId");
+  return redirect("/", {
+    headers: { "Set-Cookie": await commitSession(session) },
+  });
+
+  // return json({ errors: { server: "There was an issue signing in." } });
 };
 
 const SignIn = () => {
