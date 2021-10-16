@@ -1,0 +1,27 @@
+{
+  "name": "remix-bug",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix run",
+    "start": "remix-serve build",
+    "postinstall": "remix setup"
+  },
+  "dependencies": {
+    "@remix-run/react": "^0.19.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^6.0.0-beta.6",
+    "remix": "^0.19.3"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^0.19.3",
+    "@remix-run/serve": "^0.19.3",
+    "@types/react": "^17.0.26",
+    "@types/react-dom": "^17.0.9",
+    "typescript": "^4.4.3"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "sideEffects": false
+}
